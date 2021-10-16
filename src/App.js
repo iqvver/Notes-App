@@ -1,14 +1,17 @@
-import logo from './logo.svg';
+import React from 'react';
+import 'antd/dist/antd.css';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        
-      </header>
+
+import Sidebar from './Component/Sidebar/Sidebar';
+
+
+export default class App extends React.Component {
+  render() {
+    return (<div>
+      <Sidebar />
     </div>
-  );
+    );
+  }
 }
 
-export default App;
