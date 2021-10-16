@@ -1,14 +1,9 @@
 import React, { Component } from 'react'
-import { Layout } from 'antd';
-import Ccomponent from '../Content/Ccomponent';
+import { Layout, Menu, Button } from 'antd';
+import { RocketOutlined, MenuUnfoldOutlined, MenuFoldOutlined, PoweroffOutlined, } from '@ant-design/icons';
+import MenuItem from 'antd/lib/menu/MenuItem';
 
-
-const { Content } = Layout;
-
-
-
-export default class Listitem extends Component {
-
+export default class Ccomponent extends Component {
     constructor(props) {
         super(props)
         this.init = {
@@ -56,19 +51,28 @@ export default class Listitem extends Component {
     }
 
     render() {
+
         return (
             <div>
-                <Content
-                    className="site-layout-background"
-                    style={{
-                        margin: '24px 16px',
-                        padding: 24,
-                        minHeight: 280,
-                    }}
-                >
-                <Ccomponent />
-                </Content>
+                <form >
+                    <input value={this.state.input} onChange={this.handleChange} />
+                    <button onClick={this.handleSubmit}>Нажми меня!</button>
+                </form>
+                <Menu>
+                    {this.state.items.map((item, index) => (
+                        <Menu.Item key={index + item.name}>
+                            {`${item.name}`}
+                            <button onClick={() => {
+                                this.handleDelete(item.id)
+                            }}>X</button>
+                        </Menu.Item>
+                    ))}
+                </Menu>
+
+                <h5>{`Я написал: ${this.state.input}`}</h5>
+                
+                <h1>Я написал: {this.state.input}</h1>
             </div>
-        )
+        );
     }
 }
