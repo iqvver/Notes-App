@@ -60,14 +60,16 @@ export default class Card extends Component {
                 <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
                     <div className="logo" />
                     <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-
-                        {items.map((item, id, key) => (<Menu.Item key={id} item={item}
-                            icon={<UserOutlined />}>
-                            {id}
-                            <Button onClick={() => {
-                                this.handleDelete(item.key)
-                            }}>X</Button>
-                        </Menu.Item>))}
+                        {items.map((item, idx, key) => (
+                            <Menu.Item 
+                                key={idx} 
+                                item={item}
+                                icon={<UserOutlined />}
+                            >
+                                {item.title}
+                                <Button onClick={() => { this.handleDelete(item.title) }}>X</Button>
+                            </Menu.Item>
+                        ))}
                     </Menu>
                 </Sider>
                 <Layout className="site-layout">
