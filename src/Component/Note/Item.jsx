@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import {  Menu, } from 'antd';
+import { Layout, Menu, Button, } from 'antd';
+import { PoweroffOutlined, } from '@ant-design/icons';
 
+const { Sider } = Layout;
 
-
-export default class Ccomponent extends Component {
+export default class Item extends Component {
     constructor(props) {
         super(props)
         this.init = {
@@ -17,7 +18,6 @@ export default class Ccomponent extends Component {
         this.reset = this.reset.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
     }
-
     handleChange(event) {
         this.setState({
             ...this.state,
@@ -50,29 +50,39 @@ export default class Ccomponent extends Component {
         this.setState({ ...this.state, items: newItems })
     }
 
+    state = {
+        collapsed: false,
+    };
+
+    toggle = () => {
+        this.setState({
+            collapsed: !this.state.collapsed,
+        });
+    };
+
     render() {
-
         return (
-            <div>
-                <form >
+            <Layout>
+                <Sider>
+                    <Button type="primary" onClick={this.handleSubmit}>New Node</Button>
                     <input value={this.state.input} onChange={this.handleChange} />
-                    <button onClick={this.handleSubmit}>Нажми меня!</button>
-                </form>
-                <Menu>
-                    {this.state.items.map((item, index) => (
-                        <Menu.Item key={index + item.name}>
-                            {`${item.name}`}
-                            <button onClick={() => {
-                                this.handleDelete(item.id)
-                            }}>X</button>
-                        </Menu.Item>
-                    ))}
-                </Menu>
+                    <Menu theme="dark" mode="inline" defaultSelectedKeys={['0']}>
+                        {this.state.items.map((item, index) => (
+                            <Menu.Item key={index + item.name + item.date}>
+                                {`${item.name}`}
+                                <Button type="primary"
+                                    icon={<PoweroffOutlined />} onClick={() => {
+                                        this.handleDelete(item.id)
+                                    }}></Button>
+                            </Menu.Item>
+                            
+                        ))}
+                    </Menu>
+                    
+                </Sider>
+            </Layout>
 
-                <h5>{`Я написал: ${this.state.input}`}</h5>
-                
-                <h1>Я написал: {this.state.input}</h1>
-            </div>
-        );
+        )
+        
     }
 }
