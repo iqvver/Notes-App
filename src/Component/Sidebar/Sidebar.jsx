@@ -1,6 +1,9 @@
-import React, { Component } from 'react'
+import React, { Component, useState  } from 'react'
+import ReactDOM from 'react-dom';
 import ItemEdit from './../ItemEdit'
 import store from './../../store'
+import { makeAutoObservable } from 'mobx'
+import { observer } from "mobx-react-lite"
 import { Button, Layout, Menu } from 'antd';
 import {
     MenuUnfoldOutlined,
@@ -10,7 +13,7 @@ import {
 
 const { Header, Sider, Content } = Layout;
 
-export default class Card extends Component {
+export default class Sidebar extends Component {
     state = {
         collapsed: false,
     };
@@ -38,36 +41,29 @@ export default class Card extends Component {
     componentDidMount() {
         this.getData();
     }
-    deleteNote = (id) => {
-        let items = store.getItems();
-        this.removeItem(id);
-    }
-    handleDelete(id) {
-        let items = this.getItems();
-        localStorage.removeItem(id);
-    }
     handleChange = (e, field) => {
         this.setState({
             [field]: e.target.value,
         });
     }
-
-
+    
     render() {
         let { items } = this.state;
         return (
             <Layout>
                 <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
                     <div className="logo" />
-                    <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
+                    <Menu theme="dark" mode="inline" defaultSelectedKeys={['']}>
 
-                        {items.map((item, id, key) => (<Menu.Item key={id} item={item}
+                        {items.map((item, idx) => (<Menu.Item key={idx} item={item}
                             icon={<UserOutlined />}>
-                            {id}
+                            {item.title}
                             <Button onClick={() => {
-                                this.handleDelete(item.key)
+                                store.removeItem(idx);
+                                onsubmit = {}
                             }}>X</Button>
                         </Menu.Item>))}
+
                     </Menu>
                 </Sider>
                 <Layout className="site-layout">
