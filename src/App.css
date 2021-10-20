@@ -6,13 +6,33 @@
   height: 40vmin;
   pointer-events: none;
 }
+#root {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+aside {
+  display: flex;
+  width: 300px;
+  flex-direction: column;
+  background: #eee;
+  padding: 10px;
+  height: 100vh;
+}
+main {
+  display: flex;
+  flex-direction: column;
+}
+li {
+  cursor: pointer;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
 }
- /*
+/*
 .App-header {
   background-color: #ffffff;
   min-height: 100vh;
