@@ -4,6 +4,8 @@ const STORE_KEY = 'STORE_KEY';
 
 class Store {
     _data = []
+    activeItemIndex = 1
+
     constructor() {
         makeAutoObservable(this)
         try {// если вдруг в стораже лежит кривая строка то мы отловим ошибку
@@ -15,19 +17,23 @@ class Store {
         localStorage.setItem(STORE_KEY, JSON.stringify(data)) 
         this._data = data 
     }
-    getItems() {
-        let data = localStorage.getItem(STORE_KEY);
-        data = JSON.parse(data) || [];
-        return data;
+    updateActiveItem(item){
+        const newItems = [...this.data]
+        console.log('updateActiveItem', item)
+        if (this.data[this.activeItemIndex]){
+            this.data[this.activeItemIndex] = item
+        }
     }
     addItem(note) {
         const newNotes = [...[note], ...this.data] 
+        
+        this.activeItemIndex = 0
         this.data = newNotes
+        console.log('addItem newNotes', newNotes)
         localStorage.setItem(STORE_KEY, JSON.stringify(newNotes))
     }
-    removeItem(idx) {
-        this.data = this.data.filter((item, index) => index !== idx)
-    }
+    getActiveItem() { return this.data.find((item, index) => index === this.activeItemIndex) }
+    removeItem() { this.data = this.data.filter((item, index) => index !== this.activeItemIndex) }
 }
 const store = new Store();
 export default store;
