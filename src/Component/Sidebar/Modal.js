@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import ReactDOM from 'react-dom'
 import { Modal, Button } from 'antd';
 import { observer } from "mobx-react-lite"
 import { DeleteOutlined } from '@ant-design/icons';
 import '../Note.css'
-
 
 const Window = ({ store }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -25,7 +23,7 @@ const Window = ({ store }) => {
 
   return (
     <>
-      <Button type="primary" onClick={showModal}>
+      <Button type="primary" size='small' onClick={showModal}>
         <DeleteOutlined />
       </Button>
       <Modal title="Удаление" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>

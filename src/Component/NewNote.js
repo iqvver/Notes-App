@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
-
-import { Button, } from 'antd';
+import { Button } from 'antd';
+import { PlusOutlined } from '@ant-design/icons';
 
 export default class NewNote extends Component {
     handleClick = (e) => {
-        let {onClick} = this.props;
+        let { onClick } = this.props;
         onClick && onClick(e);
     }
     render() {
         return (
-            <div onClick={this.handleClick}> 
-                <Button type="primary" className='new_note_text'>New Note</Button>
+            <div onClick={this.handleClick}>
+                <Button type="primary" size='small'><PlusOutlined /></Button>
             </div>
         )
     }
