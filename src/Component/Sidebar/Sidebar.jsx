@@ -12,8 +12,8 @@ const Sidebar = ({ store }) => {
     const [collapsed, setCollapsed] = React.useState(false)
     const handleClick = (e) => {
         e.nativeEvent.stopImmediatePropagation();
-        store.addItem({ title: '', text: '' })
-        store.updateActiveItem({ title: '', text: '' })
+        store.addItem({ title: '', text: '' }) //добавление новой заметки по нажатию кнопки "+"
+        store.updateActiveItem({ title: '', text: '' }) //редактирование выбранной заметки
         store.activeItemIndex = 0
     }
     return (
@@ -21,13 +21,13 @@ const Sidebar = ({ store }) => {
             <Sider trigger={null} collapsible collapsed={collapsed}>
                 <div>
                     <div className='newNoteButton'>
-                        <NewNote onClick={handleClick} />
+                        <NewNote onClick={handleClick} /> {/*кнопка сознаюя заметки*/}
                     </div>
                     <div className='delButton'>
-                        <Window store={store} />
+                        <Window store={store} /> {/*кнопка удаления заметки*/}
                     </div>
                 </div>
-                <Menu className='menu' onSelect={({ item, key }) => { store.activeItemIndex = +key }}
+                <Menu className='menu' onSelect={({ item, key }) => { store.activeItemIndex = +key }} /*меню где отображаются заметки*/
                     theme="dark"
                     mode="inline"
                     defaultSelectedKeys={['1']}
@@ -41,14 +41,14 @@ const Sidebar = ({ store }) => {
                 </Menu>
             </Sider>
             <Layout className="site-layout">
-                <Header className="site-layout-background" style={{ padding: 0 }}>
+                <Header className="site-layout-background" style={{ padding: 0 }}> {/*сворачивание и разворачивания меню*/}
                     {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
                         className: 'trigger',
                         onClick: () => { setCollapsed(!collapsed) },
                     })}
                 </Header>
                 <Content className="site-layout-background">
-                    <ItemEdit store={store} />
+                    <ItemEdit store={store} /> {/*отображение и радактирование заметок*/}
                 </Content>
             </Layout>
         </Layout>

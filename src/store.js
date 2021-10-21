@@ -14,17 +14,17 @@ class Store {
     }
     get data() { return this._data }
     set data(data) {
-        localStorage.setItem(STORE_KEY, JSON.stringify(data)) 
+        localStorage.setItem(STORE_KEY, JSON.stringify(data)) //получение заметок 
         this._data = data 
     }
-    updateActiveItem(item){
+    updateActiveItem(item){ //редактирование заметок
         const newItems = [...this.data]
         console.log('updateActiveItem', item)
         if (this.data[this.activeItemIndex]){
             this.data[this.activeItemIndex] = item
         }
     }
-    addItem(note) {
+    addItem(note) { //добавление заметок
         const newNotes = [...[note], ...this.data] 
         
         this.activeItemIndex = 0
