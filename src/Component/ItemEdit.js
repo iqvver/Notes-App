@@ -18,17 +18,18 @@ const ItemEdit = ({ store }) => {
             <NewNote onClick={handleClick} />
             <div className='item_edit'>
                 <div className='item_in'>
-                    <input type='text'
+                    <input autoFocus={true}
+                        type='text'
                         placeholder='Заголовок'
                         value={activeItem.title}
-                        onChange={e => store.updateActiveItem({...activeItem, title: e.target.value })}
+                        onChange={e => store.updateActiveItem({ ...activeItem, title: e.target.value })}
                     />
                 </div>
                 <div className='item_area'>
                     <textarea
                         value={activeItem.text}
                         placeholder='TEXT'
-                        onChange={e => store.updateActiveItem({...activeItem, text: e.target.value })}
+                        onChange={e => store.updateActiveItem({ ...activeItem, text: e.target.value })}
                     />
                 </div>
             </div>
