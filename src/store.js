@@ -18,15 +18,12 @@ class Store {
         this._data = data 
     }
     updateActiveItem(item){ //редактирование заметок
-        const newItems = [...this.data]
-        console.log('updateActiveItem', item)
         if (this.data[this.activeItemIndex]){
             this.data[this.activeItemIndex] = item
         }
     }
     addItem(note) { //добавление заметок
         const newNotes = [...[note], ...this.data] 
-        
         this.activeItemIndex = 0
         this.data = newNotes
         console.log('addItem newNotes', newNotes)
