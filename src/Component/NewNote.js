@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Button } from 'antd';
-import { PlusOutlined } from '@ant-design/icons';
+import { SaveOutlined } from '@ant-design/icons';
 
 export default class NewNote extends Component {
     handleClick = (e) => {
@@ -10,7 +10,7 @@ export default class NewNote extends Component {
     render() {
         return (
             <div onClick={this.handleClick}>
-                <Button type="primary" size='small'><PlusOutlined /></Button>
+                <Button type="primary" size='small'><SaveOutlined /></Button>
             </div>
         )
     }
